@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Scanner frame corner marks -->
+    <path
+        android:pathData="M28,34 L28,26 L36,26"
+        android:strokeWidth="2.5"
+        android:strokeColor="#38BDF8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M72,26 L80,26 L80,34"
+        android:strokeWidth="2.5"
+        android:strokeColor="#38BDF8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M28,74 L28,82 L36,82"
+        android:strokeWidth="2.5"
+        android:strokeColor="#38BDF8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M72,82 L80,82 L80,74"
+        android:strokeWidth="2.5"
+        android:strokeColor="#38BDF8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+
+    <!-- Main document sheet with folded corner -->
+    <path
+        android:pathData="M34,31 L64,31 L74,41 L74,77 L34,77 Z"
+        android:fillColor="#F8FAFC" />
+    <!-- Folded dog-ear corner -->
+    <path
+        android:pathData="M64,31 L64,41 L74,41 Z"
+        android:fillColor="#CBD5E1" />
+
+    <!-- Document header bar -->
+    <path
+        android:pathData="M40,38 L58,38"
+        android:strokeWidth="2.5"
+        android:strokeColor="#0EA5E9"
+        android:strokeLineCap="round" />
+
+    <!-- Table Grid Rows inside document -->
+    <path
+        android:pathData="M40,46 L68,46"
+        android:strokeWidth="1.5"
+        android:strokeColor="#94A3B8"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M40,52 L68,52"
+        android:strokeWidth="1.5"
+        android:strokeColor="#94A3B8"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M40,58 L68,58"
+        android:strokeWidth="1.5"
+        android:strokeColor="#94A3B8"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M40,64 L56,64"
+        android:strokeWidth="1.5"
+        android:strokeColor="#F59E0B"
+        android:strokeLineCap="round" />
+
+    <!-- Laser Scanner beam line across document -->
+    <path
+        android:pathData="M24,53 L84,53">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:startX="24"
+                android:startY="53"
+                android:endX="84"
+                android:endY="53"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#0038BDF8" />
+                <item android:offset="0.3" android:color="#38BDF8" />
+                <item android:offset="0.7" android:color="#06B6D4" />
+                <item android:offset="1.0" android:color="#0006B6D4" />
+            </gradient>
+        </aapt:attr>
+        <aapt:attr name="android:strokeWidth">
+            <gradient
+                android:startX="24"
+                android:startY="53"
+                android:endX="84"
+                android:endY="53"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#00000000" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path
+        android:pathData="M24,53 L84,53"
+        android:strokeWidth="2.5"
+        android:strokeColor="#00F0FF"
+        android:strokeLineCap="round" />
+</vector>

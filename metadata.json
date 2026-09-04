@@ -1,0 +1,6 @@
+{
+  "name": "DocuParse EA",
+  "description": "B2B document parsing engine specialized in East African SACCO records, school exams, fleet logs, and EFRIS invoices.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
