@@ -1,0 +1,1 @@
+[{ "relation": ["delegate_permission/common.handle_all_urls"], "target": { "namespace": "android_app", "package_name": "com.aistudio.docuparse.eakz", "sha256_cert_fingerprints": [ "B5:60:B0:DA:60:11:03:2B:92:F9:71:02:4C:CE:74:E7:6E:17:93:E4:CA:82:FF:51:B5:E5:1D:F3:BE:97:0B:99" ] } }]

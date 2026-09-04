@@ -72,6 +72,10 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        // Initialize Firebase
+        com.google.firebase.FirebaseApp.initializeApp(this)
+        
         enableEdgeToEdge()
 
         setContent {
@@ -80,9 +84,6 @@ class MainActivity : ComponentActivity() {
                 val historicalDocs by viewModel.historicalDocuments.collectAsStateWithLifecycle()
                 val searchQuery by viewModel.searchQuery.collectAsStateWithLifecycle()
                 val selectedCategory by viewModel.selectedCategory.collectAsStateWithLifecycle()
-                val networkStatus by viewModel.networkStatus.collectAsStateWithLifecycle()
-                val queuedDocs by viewModel.queuedDocuments.collectAsStateWithLifecycle()
-                val pendingQueueCount by viewModel.pendingQueueCount.collectAsStateWithLifecycle()
 
                 var showApiKeyDialog by remember { mutableStateOf(false) }
                 var showCameraScreen by remember { mutableStateOf(false) }
@@ -108,10 +109,6 @@ class MainActivity : ComponentActivity() {
                             mainPhotoPickerLauncher.launch(
                                 PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
                             )
-                        },
-                        onBatchQueued = { batchList, filterMode ->
-                            showCameraScreen = false
-                            viewModel.queueBatchDocumentsOffline(batchList, filterMode)
                         }
                     )
                 } else {
@@ -189,64 +186,6 @@ class MainActivity : ComponentActivity() {
                                         verticalAlignment = Alignment.CenterVertically,
                                         horizontalArrangement = Arrangement.spacedBy(8.dp)
                                     ) {
-                                        // Dynamic Online / Offline status badge
-                                        Surface(
-                                            shape = RoundedCornerShape(16.dp),
-                                            color = if (networkStatus.isOnline) Color(0xFFECFDF5) else Color(0xFFFFFBEB),
-                                            border = androidx.compose.foundation.BorderStroke(
-                                                1.dp,
-                                                if (networkStatus.isOnline) Color(0xFFD1FAE5) else Color(0xFFFDE68A)
-                                            )
-                                        ) {
-                                            Row(
-                                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
-                                                verticalAlignment = Alignment.CenterVertically,
-                                                horizontalArrangement = Arrangement.spacedBy(5.dp)
-                                            ) {
-                                                Box(
-                                                    modifier = Modifier
-                                                        .size(6.dp)
-                                                        .clip(androidx.compose.foundation.shape.CircleShape)
-                                                        .background(if (networkStatus.isOnline) Color(0xFF10B981) else Color(0xFFD97706))
-                                                )
-                                                Text(
-                                                    text = if (networkStatus.isOnline) "ONLINE" else "OFFLINE",
-                                                    style = MaterialTheme.typography.labelSmall.copy(
-                                                        fontSize = 9.sp,
-                                                        fontWeight = FontWeight.Bold,
-                                                        letterSpacing = 0.6.sp
-                                                    ),
-                                                    color = if (networkStatus.isOnline) Color(0xFF047857) else Color(0xFFB45309)
-                                                )
-                                            }
-                                        }
-
-                                        // Offline Queue Pending Counter Pill
-                                        if (pendingQueueCount > 0) {
-                                            Surface(
-                                                shape = RoundedCornerShape(16.dp),
-                                                color = Color(0xFFEEF2FF),
-                                                border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFC7D2FE)),
-                                                modifier = Modifier.clickable { viewModel.syncOfflineQueue() }
-                                            ) {
-                                                Row(
-                                                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
-                                                    verticalAlignment = Alignment.CenterVertically,
-                                                    horizontalArrangement = Arrangement.spacedBy(4.dp)
-                                                ) {
-                                                    Text(
-                                                        text = "$pendingQueueCount QUEUED",
-                                                        style = MaterialTheme.typography.labelSmall.copy(
-                                                            fontSize = 9.sp,
-                                                            fontWeight = FontWeight.Bold,
-                                                            letterSpacing = 0.5.sp
-                                                        ),
-                                                        color = Color(0xFF4F46E5)
-                                                    )
-                                                }
-                                            }
-                                        }
-
                                         // Quick Launch CameraX button
                                         IconButton(
                                             onClick = { showCameraScreen = true },
